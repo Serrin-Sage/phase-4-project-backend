@@ -1,0 +1,50 @@
+[
+  {
+    "model": "home.User",
+    "pk": 1,
+    "fields": {
+      "first_name": "Moana",
+      "last_name": "Jeff",
+      "username": "mo_jeff78",
+      "email": "moJeff@example.com",
+      "password": "11111",
+      "age": 23,
+      "location": "New York City, NY"
+    }
+  },
+  {
+    "model": "home.User",
+    "pk": 2,
+    "fields": {
+      "first_name": "Conrad",
+      "last_name": "Zoop",
+      "username": "conZOO",
+      "email": "con_zoop@example.com",
+      "password": "22222",
+      "age": 45,
+      "location": "Opp, Alabama"
+    }
+  },
+  {
+    "model": "home.Drink",
+    "pk": 1,
+    "fields": {
+      "name": "Rosé Sainte Marie",
+      "alcohol_type": "Gin",
+      "sub_alc_type": "",
+      "distiller": "Salcombe Gin",
+      "dist_location": "Salcombe, Devon, UK",
+      "description": "Rosé Sainte Marie is a delicate, fresh and truly exquisite gin, reminiscent of a balmy summer's evening sat outside on the terrace of your favourite restaurant, watching the world go by. It can be enjoyed from the beginning to the end of a meal, as an aperitif or digestif, on the beach or beside the pool, but always when you need a little Mediterranean sunshine in your life.",
+      "abv": "41.4%"
+    }
+  },
+  {
+    "model": "home.Achievements",
+    "pk": 1,
+    "fields": {
+      "name": "Big Boy Drinking",
+      "image": "https://cdn.discordapp.com/attachments/751140341348040826/1067204509950017666/gold-trophy.png",
+      "user": 1
+    }
+  }
+]

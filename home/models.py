@@ -5,15 +5,10 @@ class User(models.Model):
     first_name = models.CharField(max_length=64, blank=False, null=False)
     last_name = models.CharField(max_length=64, blank=False, null=False)
     username = models.CharField(max_length=64, blank=False, unique=True, null=False)
-    email = models.CharField(max_length=64, blank=False, unique=True, null=False)
+    email = models.EmailField(blank=False, unique=True, null=False)
     password = models.CharField(max_length=64, blank=False, null=False)
     age = models.IntegerField(blank=False, null=False)
     location = models.CharField(max_length=64, blank=False, null=False)
-    favorite_list = models.ArrayField()
-    lists = models.ListField()
-    analytics = models.AnalyticsField()
-    achievement = models.AchievementField()
-    comments = models.CommentField()
     #comment belongs to a user
 
     def __str__(self):
@@ -30,9 +25,10 @@ class User(models.Model):
             'age': self.age,
             'location': self.location
         }
-class Lists(models.Model):
+class UserLists(models.Model):
     name = models.CharField(max_length=64)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # array = starts blank and post to the list with drinks selected by user
 
     def __str__(self):
         return f"This be my {self.name} list"
@@ -66,8 +62,8 @@ class Drink(models.Model):
     dist_location = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(max_length=1000)
     abv = models.CharField(max_length=50)
-    comments = models.CommentField()
-    #comment belongs to a drink
+    # user_lists = models.ForeignKey(UserLists, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return f"THIS IS {self.name} and it is {self.alcohol_type} and it was made by {self.distiller} in {self.dist_location}"
@@ -81,7 +77,8 @@ class Drink(models.Model):
             'distiller': self.distiller,
             'dist_location': self.dist_location,
             'description': self.description,
-            'abv': self.abv
+            'abv': self.abv,
+            'user_lists': self.user_lists
         }
     
 class Comment(models.Model):
