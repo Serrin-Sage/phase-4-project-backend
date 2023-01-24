@@ -9,6 +9,7 @@ class User(models.Model):
     password = models.CharField(max_length=64, blank=False, null=False)
     age = models.IntegerField(blank=False, null=False)
     location = models.CharField(max_length=64, blank=False, null=False)
+    logged_in = models.BooleanField()
     #comment belongs to a user
 
     def __str__(self):
@@ -23,7 +24,8 @@ class User(models.Model):
             'email': self.email,
             'password': self.password,
             'age': self.age,
-            'location': self.location
+            'location': self.location,
+            'logged_in': self.logged_in
         }
 class UserLists(models.Model):
     name = models.CharField(max_length=64)
