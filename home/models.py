@@ -9,11 +9,11 @@ class User(models.Model):
     password = models.CharField(max_length=64, blank=False, null=False)
     age = models.IntegerField(blank=False, null=False)
     location = models.CharField(max_length=64, blank=False, null=False)
-    logged_in = models.BooleanField()
+    logged_in = models.BooleanField(default=False)
     #comment belongs to a user
 
     def __str__(self):
-        return f"{self.first_name} is {self.age} years old"
+        return f"{self.first_name} is my first name {self.last_name} is my last name, username= {self.username}, password= {self.password}, is {self.age} years old, and I live in {self.location}"
 
     def to_dict(self):
         return {
@@ -64,7 +64,8 @@ class Drink(models.Model):
     dist_location = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(max_length=1000)
     abv = models.CharField(max_length=50)
-    image = models.CharField(max_length=200)
+    image = models.ImageField(
+        upload_to=None, height_field=None, width_field=None, max_length=200)
     # user_lists = models.ForeignKey(UserLists, on_delete=models.CASCADE)
 
 
