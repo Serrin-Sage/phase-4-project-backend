@@ -62,6 +62,7 @@ class Drink(models.Model):
     dist_location = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(max_length=1000)
     abv = models.CharField(max_length=50)
+    image = models.CharField(max_length=200)
     # user_lists = models.ForeignKey(UserLists, on_delete=models.CASCADE)
 
 
@@ -83,24 +84,25 @@ class Drink(models.Model):
     
 class Comment(models.Model):
     rating = models.IntegerField()
-    comment = models.TextField(max_length=500)
+    comments = models.TextField(max_length=500)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"this is a comment: {self.comment} . and this is a rating: {self.rating}"
+        return f"this is a comment: {self.comments} . and this is a rating: {self.rating}"
     
     def to_dict(self):
         return {
             'id': self.id,
             'rating': self.rating,
-            'comment': self.comment,
+            'comments': self.comments,
             'user': self.user,
             'drink': self.drink
         }
 
 class Achievements(models.Model):
     name = models.CharField(max_length=64)
+    description = models.CharField(max_length=200)
     image = models.URLField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -110,6 +112,7 @@ class Achievements(models.Model):
     def to_dict(self):
         return {
             'name': self.name,
+            'description': self.description,
             'image': self.image,
             'user': self.user
         }
