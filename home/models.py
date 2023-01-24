@@ -72,14 +72,15 @@ class Drink(models.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'name': self.first_name,
+            'name': self.name,
             'alcohol_type': self.alcohol_type,
-            'style': self.style,
+            'sub_alc_type': self.sub_alc_type,
             'distiller': self.distiller,
             'dist_location': self.dist_location,
             'description': self.description,
             'abv': self.abv,
-            'user_lists': self.user_lists
+            'image': self.image
+            # 'user_lists': self.user_lists
         }
     
 class Comment(models.Model):
