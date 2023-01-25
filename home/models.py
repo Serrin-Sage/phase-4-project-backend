@@ -28,34 +28,6 @@ class User(models.Model):
             'location': self.location,
             'logged_in': self.logged_in
         }
-class UserLists(models.Model):
-    name = models.CharField(max_length=64)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # array = starts blank and post to the list with drinks selected by user
-
-    def __str__(self):
-        return f"This be my {self.name} list"
-    
-    def to_dict(self):
-        return{
-            'id': self.id,
-            'name': self.name,
-            'user': self.user
-        }
-class Analytics(models.Model):
-    name = models.CharField(max_length=64)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    userlist = models.ForeignKey(UserLists, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"these are this users {self.name} analytics"
-    
-    def to_dict(self):
-        return{
-            'name': self.name,
-            'user': self.user
-        }
-    
 class Drink(models.Model):
     name = models.CharField(max_length=64, blank=False, null=False)
     # this is the category which will be conencted to the front end (get Drink.alcohol_type === beer)
@@ -69,7 +41,6 @@ class Drink(models.Model):
     image = models.ImageField(
         upload_to=None, height_field=None, width_field=None, max_length=200)
     # user_lists = models.ForeignKey(UserLists, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return f"THIS IS {self.name} and it is {self.alcohol_type} and it was made by {self.distiller} in {self.dist_location}"
@@ -87,6 +58,37 @@ class Drink(models.Model):
             'image': self.image
             # 'user_lists': self.user_lists
         }
+class UserLists(models.Model):
+    name = models.CharField(max_length=64)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    drinks = models.ManyToManyField(Drink)
+    # array = starts blank and post to the list with drinks selected by user
+
+    def __str__(self):
+        return f"This be my {self.name} list"
+    
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'name': self.name,
+            'user': self.user,
+            'drinks': self.drinks
+        }
+class Analytics(models.Model):
+    name = models.CharField(max_length=64)
+    user = models.ManyToManyField(User)
+    userlist = models.ForeignKey(UserLists, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"these are this users {self.name} analytics"
+    
+    def to_dict(self):
+        return{
+            'name': self.name,
+            'user': self.user,
+            'userlist': self.userlist
+        }
+    
     
 class Comment(models.Model):
     rating = models.IntegerField()

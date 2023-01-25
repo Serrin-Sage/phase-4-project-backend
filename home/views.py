@@ -29,8 +29,6 @@ def drinks_all(request):
 def index_user(request):
 	users = list(User.objects.values())
 	return JsonResponse(users, safe=False, status=201)
-
- 
  
 @csrf_exempt
 def login(request):
@@ -110,12 +108,14 @@ def show_list(request, id):
 	except UserLists.DoesNotExist:
 		return JsonResponse({'error': 'List not found'}, status=404)
 
-def update_list(request, id):
+def update_list(request, drink_id, user_id):
 	if request.method == "PATCH":
-		userlist = UserLists.objects.get(id=id)
+		drink = Drink.objects.get(id=drink_id)
+		userlist = UserLists.objects.get(id=user_id)
 		data = json.loads(request.body)
-		for key, value in data.items():
-			setattr(userlist, key, value)
+		userlist.drinks.add(drink)
+		# for key, value in data.items():
+		# 	setattr(userlist, key, value)
 		userlist.save()
 		return JsonResponse({'success': True}, status=200 )
 	else:
