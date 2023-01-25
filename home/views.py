@@ -30,7 +30,8 @@ def index_user(request):
 	users = list(User.objects.values())
 	return JsonResponse(users, safe=False, status=201)
 
-
+ 
+ 
 @csrf_exempt
 def login(request):
     if request.method == 'POST':

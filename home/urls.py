@@ -29,9 +29,10 @@ urlpatterns = [
     path('user_analytic', views.create_analytic, name="create analytic"), #create an analytics for a particular user
     path('update_analytic/<int:id>', views.update_analytic, name="update analytic"), #updates a users analytics based on what they have liked and such
     
+    
     path('create_comment', views.create_comment, name="create comments"), #creates a comment from a user for a drink
     path('user_comments/<int:id>', views.show_comments, name="user comments"), #shows individual comments from a user and needs to be attached to a drink
     path('update_comment/<int:id>', views.update_comment, name="update comments"), #allows users to edit a comment on a drink
     path('delete_comment/<int:id>', views.delete_comment, name="delete comment") #allows user to delete a comment
-    
+     
 ]
