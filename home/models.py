@@ -9,8 +9,9 @@ class User(models.Model):
     password = models.CharField(max_length=64, blank=False, null=False)
     age = models.IntegerField(blank=False, null=False)
     location = models.CharField(max_length=64, blank=False, null=False)
-    logged_in = models.BooleanField(default=False)
+    logged_in = models.BooleanField(default=True)
     #comment belongs to a user
+
 
     def __str__(self):
         return f"{self.first_name} is my first name {self.last_name} is my last name, username= {self.username}, password= {self.password}, is {self.age} years old, and I live in {self.location}"
@@ -44,6 +45,7 @@ class UserLists(models.Model):
 class Analytics(models.Model):
     name = models.CharField(max_length=64)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    userlist = models.ForeignKey(UserLists, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"these are this users {self.name} analytics"
