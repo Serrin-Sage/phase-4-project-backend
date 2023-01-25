@@ -9,7 +9,8 @@ urlpatterns = [
     path('drinks/<int:id>', views.drinks_id), #grabs the drink by its id
     path('drinks/<str:alcohol_type>', views.drinks_category), #grabs all the drinks that are under that category
          
-    path('user/', views.my_user),
+    path('users', views.index_user),
+    path('user', views.create_user),
     path('user/<int:id>', views.show_user),
     # path('user/<int:id>', views.update_user),
     # path('user/<int:id>', views.delete_user),

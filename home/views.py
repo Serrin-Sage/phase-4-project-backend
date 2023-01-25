@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import json
 from .models import User, UserLists, Analytics, Drink, Comment, Achievements
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 # Create your views here.
 # def index(request): #gets all data from Example
@@ -42,16 +42,12 @@ def drinks_all(request):
 # 	user.save()
 # 	return JsonResponse(user, safe=False)
 
-@csrf_exempt
-def my_user(request):
-	if request.method == "POST":
-		data = json.loads(request.body)
-		user = User(data['first_name'])
-		# , data['last_name'], data['username'], data['email'], data['password'], data['age'], data['location']
-		print(user)
-		return JsonResponse({'success': True})
-	else:
-		return JsonResponse({'error': 'Invalid request method'})
+
+
+
+def index_user(request):
+	users = list(User.objects.values())
+	return JsonResponse(users, safe=False)
 
 
 def show_user(request, id):
@@ -61,15 +57,28 @@ def show_user(request, id):
 	except User.DoesNotExist:
 		return JsonResponse({'error': 'User not found'})
 
+	
+@csrf_exempt
+def create_user(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        user = User(first_name=data["first_name"], last_name=data['last_name'], username=data['username'],
+                    email=data['email'], password=data['password'], age=data['age'], location=data['location'])
+        # Why and how TF does this work!
+        print(user)
+        user.save()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
+    
 
-# @csrf_exempt
-# def update_user(request, id):
-# 		data= request.json
-# 		user = User.objects.query.get(id)
-# 		for key, value in data.items():
-# 			setattr(user, key, value)
-# 		user.save()
-# 		return JsonResponse(user.to_dict()), 201
-
-# def delete_user(request, id):
-# 	try
+@csrf_exempt
+def update_user(request, id):
+	if request.method == "PATCH": 
+		data = json.loads(request.body)
+		user = User(first_name=data["first_name"])
+		print(user)
+		user.save()
+		return JsonResponse({'success': True})
+	else:
+		return JsonResponse({'error': 'Could not update'})
