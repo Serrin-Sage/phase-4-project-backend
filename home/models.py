@@ -12,7 +12,6 @@ class User(models.Model):
     logged_in = models.BooleanField(default=True)
     #comment belongs to a user
 
-
     def __str__(self):
         return f"{self.first_name} is my first name {self.last_name} is my last name, username= {self.username}, password= {self.password}, is {self.age} years old, and I live in {self.location}"
 
@@ -88,8 +87,7 @@ class Analytics(models.Model):
             'user': self.user,
             'userlist': self.userlist
         }
-    
-    
+      
 class Comment(models.Model):
     rating = models.IntegerField()
     comments = models.TextField(max_length=500)

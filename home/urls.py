@@ -19,8 +19,8 @@ urlpatterns = [
 
     path('list', views.create_list, name="create list"), #create a list
     path('lists', views.index_lists, name="all lists"), #show all the lists for a particular user
-    path('user_list/<int:id>', views.show_list, name="individual lists"), #shows an individual list from a particular user
-    path('update_list/<int:id>', views.update_list, name="update lists"), #allows users to update a particular list
+    path('user_list/<int:user_id>', views.show_list, name="individual lists"), #shows an individual list from a particular user
+    path('update_list/<int:user_id>/<int:drink_id>', views.update_list, name="update lists"), #allows users to update a particular list
     path('delete_list/<int:id>', views.delete_list, name="delete lists"), #allow users to delete a list
          
     path('achievement/<int:id>', views.show_achievement, name="individual achievements"), #gets an achievement if a user has completed it
@@ -28,7 +28,6 @@ urlpatterns = [
     
     path('user_analytic', views.create_analytic, name="create analytic"), #create an analytics for a particular user
     path('update_analytic/<int:id>', views.update_analytic, name="update analytic"), #updates a users analytics based on what they have liked and such
-    
     
     path('create_comment', views.create_comment, name="create comments"), #creates a comment from a user for a drink
     path('user_comments/<int:id>', views.show_comments, name="user comments"), #shows individual comments from a user and needs to be attached to a drink

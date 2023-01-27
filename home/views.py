@@ -108,10 +108,11 @@ def show_list(request, id):
 	except UserLists.DoesNotExist:
 		return JsonResponse({'error': 'List not found'}, status=404)
 
-def update_list(request, drink_id, user_id):
+def update_list(request, user_id, drink_id):
 	if request.method == "PATCH":
-		drink = Drink.objects.get(id=drink_id)
 		userlist = UserLists.objects.get(id=user_id)
+		drink = Drink.objects.get(id=drink_id)
+		# print (kwargs, type(kwargs))
 		data = json.loads(request.body)
 		userlist.drinks.add(drink)
 		# for key, value in data.items():
@@ -154,7 +155,8 @@ def update_achievement(request, id):
 def create_analytic(request):
 		if request.method == "POST":
 			data = json.loads(request.body)
-			analytic = Analytics(name=data["name"], user_id=data['user_id'])
+			analytic = Analytics(name=data["name"], user=data['user'])
+			analytic.objects.create()
 			analytic.save()
 			return JsonResponse({'success': True}, status=200)
 		else:
