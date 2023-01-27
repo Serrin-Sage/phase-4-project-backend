@@ -3,12 +3,12 @@
     "model": "home.User",
     "pk": 1,
     "fields": {
-      "first_name": "Moana",
-      "last_name": "Jeff",
-      "username": "mo_jeff78",
-      "email": "moJeff@example.com",
-      "password": "11111",
-      "age": 23,
+      "first_name": "Serrin",
+      "last_name": "Doscher",
+      "username": "Pyro",
+      "email": "Pyro@example.com",
+      "password": "aperature",
+      "age": 27,
       "location": "New York City, NY"
     }
   },
@@ -50,7 +50,7 @@
       "dist_location": "Japan",
       "description": "Coffey Gin’s complexity is achieved through the perfect balance between 11 selected botanicals and the silky texture of Coffey distillates. The bright and zesty aroma originating from four kinds of Japanese citruses, Yuzu, Kabosu, Amanatsu and Shequasar, compliments the traditional gin botanicals of juniper berries, angelica, coriander seeds, lemon and orange peels. There is also a touch of apples, a fruit deeply related to the history of Nikka, followed by pleasantly tangy hints of green Japanese Sansho pepper on the finish.",
       "abv": "47%",
-      "image": "ihttps://cdn.discordapp.com/attachments/751140341348040826/1067816259074400367/37411-removebg-preview.png"
+      "image": "https://cdn.discordapp.com/attachments/751140341348040826/1067816259074400367/37411-removebg-preview.png"
     }
   },
   {
@@ -557,7 +557,48 @@
       "image": "https://cdn.discordapp.com/attachments/751140341348040826/1067817931997724683/001820015168-removebg-preview.png"
     }
   },
-
+    {
+    "model": "home.Drink",
+    "pk": 38,
+    "fields": {
+      "name": "Orange Juice",
+      "alcohol_type": "Other",
+      "sub_alc_type": "",
+      "distiller": "Oranges",
+      "dist_location": "USA",
+      "description": "Gettin' that Vitamin C",
+      "abv": "0%",
+      "image": "https://cdn.discordapp.com/attachments/751140341348040826/1068564670295846912/2304-lg__78805-removebg-preview.png"
+    }
+  },
+    {
+    "model": "home.Drink",
+    "pk": 38,
+    "fields": {
+      "name": "Water",
+      "alcohol_type": "Other",
+      "sub_alc_type": "",
+      "distiller": "Mother Earth",
+      "dist_location": "The ground",
+      "description": "Water is the esscence of wetness. And wetness is the essence of beauty",
+      "abv": "0%",
+      "image": "https://cdn.discordapp.com/attachments/751140341348040826/1068564474136637480/ghows-MO[…]1-9286-1981-e053-0100007facbf-4742d31d-removebg-preview.png"
+    }
+  },
+    {
+    "model": "home.Drink",
+    "pk": 38,
+    "fields": {
+      "name": "Malk",
+      "alcohol_type": "Other",
+      "sub_alc_type": "",
+      "distiller": "Cows",
+      "dist_location": "USA",
+      "description": "It is often thought that if you like this as an adult, you are weird",
+      "abv": "0%",
+      "image": "https://cdn.discordapp.com/attachments/751140341348040826/1068564576641232967/10001972-removebg-preview.png"
+    }
+  },
   {
     "model": "home.Achievements",
     "pk": 1,
